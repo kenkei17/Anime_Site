@@ -3,6 +3,7 @@ import Popular from "./Popular";
 import styled from "styled-components";
 import { useGlobalContext } from "../context/global";
 import Upcoming from "./Upcoming";
+import Airing from "./Airing";
 
 function Homepage() {
   const {
@@ -22,6 +23,8 @@ function Homepage() {
         return <Popular rendered={rendered} />;
       case "upcoming":
         return <Upcoming rendered={rendered} />;
+      case "airing":
+        return <Airing rendered={rendered} />;
       default:
         return <Popular rendered={rendered} />;
     }

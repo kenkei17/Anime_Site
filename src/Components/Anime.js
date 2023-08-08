@@ -125,7 +125,7 @@ function AnimeItem() {
             const { role } = character;
             const { images, name, mal_id } = character.character;
             return (
-              <Link to={`character/${mal_id}`} key={index}>
+              <Link to={`/character/${mal_id}`} key={index}>
                 <div className="character">
                   <img src={images?.jpg.image_url} alt="" />
                   <h4>{name}</h4>
