@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useGlobalContext } from "../context/global";
 function Gallery() {
   const { getAnimePictures, pictures } = useGlobalContext();
   const { id } = useParams();
+  const [index, setIndex] = useState(0);
+  const handleImageClick = (i) => {
+    setIndex(i);
+  };
   useEffect(() => {
     getAnimePictures(id);
-  }, []);
+  }, [id]);
   return (
     <GalleryStyled>
       <div className="back">
@@ -15,14 +19,31 @@ function Gallery() {
           <i class="fa-solid fa-arrow-left"></i> back
         </Link>
       </div>
+
       <div className="big-image">
-        <img src="" alt="" />
+        <img src={pictures[index]?.jpg.image_url} alt="" />
       </div>
       <div className="small-images">
         {pictures?.map((picture, i) => {
           return (
-            <div className="image-con" key={i}>
-              <img src={picture.jpg.image_url} alt="" />
+            <div
+              className="image-con"
+              onClick={() => {
+                handleImageClick(i);
+              }}
+              key={i}
+            >
+              <img
+                src={picture?.jpg.image_url}
+                style={{
+                  border:
+                    i === index ? "3px solid #13192e" : "3px solid #e5e7eb",
+                  filter: i === index ? "grayscale(0)" : "grayscale(60%)",
+                  transform: i === index ? "scale(1.1)" : "scale(1)",
+                  transition: "all .3s ease-in-out",
+                }}
+                alt=""
+              />
             </div>
           );
         })}
@@ -45,7 +66,7 @@ const GalleryStyled = styled.div`
       font-weight: 600;
       text-decoration: none;
       color: #2a54bf;
-      font-size: 1.4rem;
+      font-size: 1.4 rem;
     }
   }
   .big-image {
@@ -69,6 +90,14 @@ const GalleryStyled = styled.div`
     border-radius: 7px;
     background-color: #fff;
     border: 5px solid #e5e7eb;
+    img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 3px solid #e5e7eb;
+    }
   }
 `;
 export default Gallery;
