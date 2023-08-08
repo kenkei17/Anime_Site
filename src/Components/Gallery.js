@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useGlobalContext } from "../context/global";
 function Gallery() {
-  const { getAnimePictures, pictures } = useGlobalContext();
+  const { getAnimePictures, pictures, dispatch, GET_PICTURES } =
+    useGlobalContext();
   const { id } = useParams();
   const [index, setIndex] = useState(0);
   const handleImageClick = (i) => {
@@ -67,6 +68,9 @@ const GalleryStyled = styled.div`
       text-decoration: none;
       color: #2a54bf;
       font-size: 1.4 rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
   }
   .big-image {

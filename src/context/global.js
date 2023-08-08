@@ -69,6 +69,7 @@ export const GlobalContextProvider = ({ children }) => {
   };
   //fetch popular anime
   const getPopularAnime = async () => {
+    state.isSearch = false;
     dispatch({ type: LOADING });
     const response = await fetch(`${baseUrl}/top/anime?filter=bypopularity`);
     const data = await response.json();
@@ -76,6 +77,7 @@ export const GlobalContextProvider = ({ children }) => {
     dispatch({ type: GET_POPULAR_ANIME, payload: data.data });
   };
   const getUpcomingAnime = async () => {
+    state.isSearch = false;
     dispatch({ type: LOADING });
     const response = await fetch(`${baseUrl}/top/anime?filter=upcoming`);
     const data = await response.json();
@@ -83,6 +85,7 @@ export const GlobalContextProvider = ({ children }) => {
     dispatch({ type: GET_UPCOMING_ANIME, payload: data.data });
   };
   const getAiringAnime = async () => {
+    state.isSearch = false;
     dispatch({ type: LOADING });
     const response = await fetch(`${baseUrl}/top/anime?filter=airing`);
     const data = await response.json();
@@ -120,6 +123,8 @@ export const GlobalContextProvider = ({ children }) => {
         getUpcomingAnime,
         getAiringAnime,
         getAnimePictures,
+        dispatch,
+        GET_PICTURES,
       }}
     >
       {children}

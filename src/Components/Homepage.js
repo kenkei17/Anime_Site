@@ -48,7 +48,7 @@ function Homepage() {
                 setRendered("popular");
               }}
             >
-              Popular
+              Popular <i class="fa-solid fa-fire"></i>
             </button>
           </div>
           <form action="" className="search-form" onSubmit={handleSubmit}>

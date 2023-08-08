@@ -6,7 +6,7 @@ function Airing({ rendered }) {
   const { airingAnime, isSearch, searchResults } = useGlobalContext();
   const condiditionalRender = () => {
     if (!isSearch && rendered === "airing") {
-      return airingAnime.map((anime) => {
+      return airingAnime?.map((anime) => {
         return (
           <Link to={`/anime/${anime.mal_id}`} key={anime.mal_id}>
             <img src={anime.images.jpg.large_image_url} alt="" />
